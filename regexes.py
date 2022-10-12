@@ -1,7 +1,8 @@
 import re
 
-# Every unicode uppercase letter according to https://stackoverflow.com/a/36188204
-pLu = "[A-Z\u00C0-\u00D6\u00D8-\u00DE\u0100\u0102\u0104" \
+# Every unicode uppercase letter according to
+# https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3Aupper%3A%5D&abb=on&ucd=on&esc=on&g=0000000&i=
+pLu = "A-Z\u00C0-\u00D6\u00D8-\u00DE\u0100\u0102\u0104" \
       "\u0106\u0108\u010A\u010C\u010E\u0110\u0112\u0114" \
       "\u0116\u0118\u011A\u011C\u011E\u0120\u0122\u0124" \
       "\u0126\u0128\u012A\u012C\u012E\u0130\u0132\u0134" \
@@ -99,31 +100,109 @@ pLu = "[A-Z\u00C0-\u00D6\u00D8-\u00DE\u0100\u0102\u0104" \
       "\U0001D6E2-\U0001D6FA\U0001D71C-\U0001D734" \
       "\U0001D756-\U0001D76E\U0001D790-\U0001D7A8" \
       "\U0001D7CA\U0001E900-\U0001E921\U0001F130-\U0001F149" \
-      "\U0001F150-\U0001F169\U0001F170-\U0001F189]"
+      "\U0001F150-\U0001F169\U0001F170-\U0001F189"
+
+
+# Every unicode lowercase letter according to
+# https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3Alower%3A%5D&abb=on&ucd=on&esc=on&g=0000000&i=
+
+pLl = "a-z\u00AA\u00B5\u00BA\u00DF-\u00F6\u00F8-\u00FF\u0101\u0103\u0105\u0107" \
+      "\u0109\u010B\u010D\u010F\u0111\u0113\u0115\u0117\u0119\u011B\u011D\u011F" \
+      "\u0121\u0123\u0125\u0127\u0129\u012B\u012D\u012F\u0131\u0133\u0135\u0137" \
+      "\u0138\u013A\u013C\u013E\u0140\u0142\u0144\u0146\u0148\u0149\u014B\u014D" \
+      "\u014F\u0151\u0153\u0155\u0157\u0159\u015B\u015D\u015F\u0161\u0163\u0165" \
+      "\u0167\u0169\u016B\u016D\u016F\u0171\u0173\u0175\u0177\u017A\u017C" \
+      "\u017E-\u0180\u0183\u0185\u0188\u018C\u018D\u0192\u0195\u0199-\u019B" \
+      "\u019E\u01A1\u01A3\u01A5\u01A8\u01AA\u01AB\u01AD\u01B0\u01B4\u01B6\u01B9" \
+      "\u01BA\u01BD-\u01BF\u01C6\u01C9\u01CC\u01CE\u01D0\u01D2\u01D4\u01D6\u01D8" \
+      "\u01DA\u01DC\u01DD\u01DF\u01E1\u01E3\u01E5\u01E7\u01E9\u01EB\u01ED\u01EF" \
+      "\u01F0\u01F3\u01F5\u01F9\u01FB\u01FD\u01FF\u0201\u0203\u0205\u0207\u0209" \
+      "\u020B\u020D\u020F\u0211\u0213\u0215\u0217\u0219\u021B\u021D\u021F\u0221" \
+      "\u0223\u0225\u0227\u0229\u022B\u022D\u022F\u0231\u0233-\u0239\u023C\u023F" \
+      "\u0240\u0242\u0247\u0249\u024B\u024D\u024F-\u0293\u0295-\u02B8\u02C0\u02C1" \
+      "\u02E0-\u02E4\u0345\u0371\u0373\u0377\u037A-\u037D\u0390\u03AC-\u03CE\u03D0" \
+      "\u03D1\u03D5-\u03D7\u03D9\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9" \
+      "\u03EB\u03ED\u03EF-\u03F3\u03F5\u03F8\u03FB\u03FC\u0430-\u045F\u0461\u0463" \
+      "\u0465\u0467\u0469\u046B\u046D\u046F\u0471\u0473\u0475\u0477\u0479\u047B\u047D" \
+      "\u047F\u0481\u048B\u048D\u048F\u0491\u0493\u0495\u0497\u0499\u049B\u049D\u049F" \
+      "\u04A1\u04A3\u04A5\u04A7\u04A9\u04AB\u04AD\u04AF\u04B1\u04B3\u04B5\u04B7\u04B9" \
+      "\u04BB\u04BD\u04BF\u04C2\u04C4\u04C6\u04C8\u04CA\u04CC\u04CE\u04CF\u04D1\u04D3" \
+      "\u04D5\u04D7\u04D9\u04DB\u04DD\u04DF\u04E1\u04E3\u04E5\u04E7\u04E9\u04EB\u04ED" \
+      "\u04EF\u04F1\u04F3\u04F5\u04F7\u04F9\u04FB\u04FD\u04FF\u0501\u0503\u0505\u0507" \
+      "\u0509\u050B\u050D\u050F\u0511\u0513\u0515\u0517\u0519\u051B\u051D\u051F\u0521" \
+      "\u0523\u0525\u0527\u0529\u052B\u052D\u052F\u0560-\u0588\u10D0-\u10FA\u10FD-\u10FF" \
+      "\u13F8-\u13FD\u1C80-\u1C88\u1D00-\u1DBF\u1E01\u1E03\u1E05\u1E07\u1E09\u1E0B\u1E0D" \
+      "\u1E0F\u1E11\u1E13\u1E15\u1E17\u1E19\u1E1B\u1E1D\u1E1F\u1E21\u1E23\u1E25\u1E27\u1E29" \
+      "\u1E2B\u1E2D\u1E2F\u1E31\u1E33\u1E35\u1E37\u1E39\u1E3B\u1E3D\u1E3F\u1E41\u1E43\u1E45" \
+      "\u1E47\u1E49\u1E4B\u1E4D\u1E4F\u1E51\u1E53\u1E55\u1E57\u1E59\u1E5B\u1E5D\u1E5F\u1E61" \
+      "\u1E63\u1E65\u1E67\u1E69\u1E6B\u1E6D\u1E6F\u1E71\u1E73\u1E75\u1E77\u1E79\u1E7B\u1E7D" \
+      "\u1E7F\u1E81\u1E83\u1E85\u1E87\u1E89\u1E8B\u1E8D\u1E8F\u1E91\u1E93\u1E95-\u1E9D\u1E9F" \
+      "\u1EA1\u1EA3\u1EA5\u1EA7\u1EA9\u1EAB\u1EAD\u1EAF\u1EB1\u1EB3\u1EB5\u1EB7\u1EB9\u1EBB" \
+      "\u1EBD\u1EBF\u1EC1\u1EC3\u1EC5\u1EC7\u1EC9\u1ECB\u1ECD\u1ECF\u1ED1\u1ED3\u1ED5\u1ED7" \
+      "\u1ED9\u1EDB\u1EDD\u1EDF\u1EE1\u1EE3\u1EE5\u1EE7\u1EE9\u1EEB\u1EED\u1EEF\u1EF1\u1EF3" \
+      "\u1EF5\u1EF7\u1EF9\u1EFB\u1EFD\u1EFF-\u1F07\u1F10-\u1F15\u1F20-\u1F27\u1F30-\u1F37" \
+      "\u1F40-\u1F45\u1F50-\u1F57\u1F60-\u1F67\u1F70-\u1F7D\u1F80-\u1F87\u1F90-\u1F97" \
+      "\u1FA0-\u1FA7\u1FB0-\u1FB4\u1FB6\u1FB7\u1FBE\u1FC2-\u1FC4\u1FC6\u1FC7\u1FD0-\u1FD3" \
+      "\u1FD6\u1FD7\u1FE0-\u1FE7\u1FF2-\u1FF4\u1FF6\u1FF7\u2071\u207F\u2090-\u209C\u210A" \
+      "\u210E\u210F\u2113\u212F\u2134\u2139\u213C\u213D\u2146-\u2149\u214E\u2170-\u217F" \
+      "\u2184\u24D0-\u24E9\u2C30-\u2C5F\u2C61\u2C65\u2C66\u2C68\u2C6A\u2C6C\u2C71\u2C73" \
+      "\u2C74\u2C76-\u2C7D\u2C81\u2C83\u2C85\u2C87\u2C89\u2C8B\u2C8D\u2C8F\u2C91\u2C93" \
+      "\u2C95\u2C97\u2C99\u2C9B\u2C9D\u2C9F\u2CA1\u2CA3\u2CA5\u2CA7\u2CA9\u2CAB\u2CAD" \
+      "\u2CAF\u2CB1\u2CB3\u2CB5\u2CB7\u2CB9\u2CBB\u2CBD\u2CBF\u2CC1\u2CC3\u2CC5\u2CC7" \
+      "\u2CC9\u2CCB\u2CCD\u2CCF\u2CD1\u2CD3\u2CD5\u2CD7\u2CD9\u2CDB\u2CDD\u2CDF\u2CE1" \
+      "\u2CE3\u2CE4\u2CEC\u2CEE\u2CF3\u2D00-\u2D25\u2D27\u2D2D\uA641\uA643\uA645\uA647" \
+      "\uA649\uA64B\uA64D\uA64F\uA651\uA653\uA655\uA657\uA659\uA65B\uA65D\uA65F\uA661" \
+      "\uA663\uA665\uA667\uA669\uA66B\uA66D\uA681\uA683\uA685\uA687\uA689\uA68B\uA68D" \
+      "\uA68F\uA691\uA693\uA695\uA697\uA699\uA69B-\uA69D\uA723\uA725\uA727\uA729\uA72B" \
+      "\uA72D\uA72F-\uA731\uA733\uA735\uA737\uA739\uA73B\uA73D\uA73F\uA741\uA743\uA745" \
+      "\uA747\uA749\uA74B\uA74D\uA74F\uA751\uA753\uA755\uA757\uA759\uA75B\uA75D\uA75F" \
+      "\uA761\uA763\uA765\uA767\uA769\uA76B\uA76D\uA76F-\uA778\uA77A\uA77C\uA77F\uA781" \
+      "\uA783\uA785\uA787\uA78C\uA78E\uA791\uA793-\uA795\uA797\uA799\uA79B\uA79D\uA79F" \
+      "\uA7A1\uA7A3\uA7A5\uA7A7\uA7A9\uA7AF\uA7B5\uA7B7\uA7B9\uA7BB\uA7BD\uA7BF\uA7C1" \
+      "\uA7C3\uA7C8\uA7CA\uA7D1\uA7D3\uA7D5\uA7D7\uA7D9\uA7F6\uA7F8-\uA7FA\uAB30-\uAB5A" \
+      "\uAB5C-\uAB68\uAB70-\uABBF\uFB00-\uFB06\uFB13-\uFB17\uFF41-\uFF5A\U00010428-\U0001044F" \
+      "\U000104D8-\U000104FB\U00010597-\U000105A1\U000105A3-\U000105B1\U000105B3-\U000105B9" \
+      "\U000105BB\U000105BC\U00010780\U00010783-\U00010785\U00010787-\U000107B0" \
+      "\U000107B2-\U000107BA\U00010CC0-\U00010CF2\U000118C0-\U000118DF\U00016E60-\U00016E7F" \
+      "\U0001D41A-\U0001D433\U0001D44E-\U0001D454\U0001D456-\U0001D467\U0001D482-\U0001D49B" \
+      "\U0001D4B6-\U0001D4B9\U0001D4BB\U0001D4BD-\U0001D4C3\U0001D4C5-\U0001D4CF" \
+      "\U0001D4EA-\U0001D503\U0001D51E-\U0001D537\U0001D552-\U0001D56B\U0001D586-\U0001D59F" \
+      "\U0001D5BA-\U0001D5D3\U0001D5EE-\U0001D607\U0001D622-\U0001D63B\U0001D656-\U0001D66F" \
+      "\U0001D68A-\U0001D6A5\U0001D6C2-\U0001D6DA\U0001D6DC-\U0001D6E1\U0001D6FC-\U0001D714" \
+      "\U0001D716-\U0001D71B\U0001D736-\U0001D74E\U0001D750-\U0001D755\U0001D770-\U0001D788" \
+      "\U0001D78A-\U0001D78F\U0001D7AA-\U0001D7C2\U0001D7C4-\U0001D7C9\U0001D7CB" \
+      "\U0001DF00-\U0001DF09\U0001DF0B-\U0001DF1E\U0001DF25-\U0001DF2A" \
+      "\U0001E030-\U0001E06C\U0001E922-\U0001E943"
+
+day = r"(([012]?[0-9])|(3[01]))"
+month = r"((0?[1-9])|(1[012]))"
 
 # Email address, that can contain any non-whitespace, non-@ characters
 email = re.compile(r"[^@\s]+@[^@\s]+\.\w{2,4}")
 
 # Date formats, it is way more recall focused, so there will be a lot of false flags
 date = re.compile(
-    r"([0-9]{1,2}[.\- /]+[0-9]{1,2}\.?)|"
-    r"([0-9]{1,2}[thrdnes]{2} *[0-9]{1,2}\.?)|"
-    r"([0-9]{1,2}[.\- /]+\S+\.?)|"
-    r"([0-9]{1,2}[thrdnes]{2} *\w{3,10}\.?)|"
-    r"(\w{3,10}\.? *[0-9]{1,2})|"
-    r"([0-9]{4})"
+    fr"({day}[.\- /\\]{month}\.?)|"
+    fr"({month}[.\- /\\]{day})|"
+    fr"({day}[thrdnes]{{2}} ?{month}\.?)|"
+    fr"({day}[.\- /\\][{pLu}{pLl}]{{3,10}}\.?)|"
+    fr"({day}[thrdnes]{{2}} [{pLu}{pLl}]{{3,10}}\.?)|"
+    fr"([\s.,?!][{pLu}{pLl}]{{3,10}}\.? {day})|"
+    r"([12][0-9]{3})"
 )
 # IPv6, IPv4, MAC and URL, the last is from
 # https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url
 computer_network = re.compile(
     r"([0-9a-fA-F]{4}:){7}[0-9a-fA-F]{4}|"
-    r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1-3}\.[0-9]{1-3}|"
+    r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|"
     r"([0-9a-fA-F]{2}[:\-]){5}[0-9a-fA-F]{2}|"
-    r"[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)"
+    r"[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*\.[a-zA-Z]{2,10})"
 )
 
+phone_number = re.compile(r"[\d+]+(\(?\d{2,15}\)?[ \-]?){2,15}")
+
 # Two capitalized words after eachother, might pose a problem for German
-name = re.compile(fr"{pLu}\w+ {pLu}\w+")
+name = re.compile(fr"[{pLu}][{pLu}{pLl}-]+ [{pLu}][{pLu}{pLl}-]+")
 
 # IBAN numbers
 bank = re.compile(r"[a-zA-Z]{2}[0-9]{2}[ 0-9]{10,40}")
@@ -131,19 +210,20 @@ bank = re.compile(r"[a-zA-Z]{2}[0-9]{2}[ 0-9]{10,40}")
 # Credit/Debit Cards according to
 # https://blog.netwrix.com/2018/05/29/regular-expressions-for-beginners-how-to-get-started-discovering-sensitive-data/
 credit = re.compile(
-    r"^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$|"
+    r"(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|"
     r"\b([4]\d{3}[\s]\d{4}[\s]\d{4}[\s]\d{4}|[4]\d{3}[-]\d{4}[-]\d{4}[-]\d{4}|[4]\d{3}[.]\d{4}[.]\d{4}[.]\d{4}|"
     r"[4]\d{3}\d{4}\d{4}\d{4})\b|"
-    r"^3[47][0-9]{13}$"
+    r"3[47][0-9]{13}"
 )
 
 # Other kind of ids
-other = re.compile(r"[a-zA-Z]*[0-9]+[a-zA-Z]*[0-9a-zA-Z\-:]+")
+other = re.compile(r"\w*\d+\w*[\w\-:]{4,100}")
 
-regex_dict = {"name": name,
+regex_dict = {"named entity": name,
               "email address": email,
               "date": date,
-              "computer address": computer_network,
+              "computer address/url": computer_network,
               "IBAN number": bank,
+              "phone number": phone_number,
               "credit/debit card number": credit,
               "other": other}
