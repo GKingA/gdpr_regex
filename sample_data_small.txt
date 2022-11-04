@@ -1,0 +1,32 @@
+CO-BRANDING AND ADVERTISING AGREEMENT
+
+THIS CO-BRANDING AND ADVERTISING AGREEMENT (the "Agreement") is made as of June 21, 1999 (the "Effective Date") by and between I-ESCROW, INC., with its principal place of business at 1730 S. Amphlett Blvd., Suite 233, San Mateo, California 94402 ("i-Escrow"), and 2THEMART.COM, INC. having its principal place of business at 18301 Von Karman Avenue, 7th Floor, Irvine, California 92612 ("2TheMart").
+
+1. DEFINITIONS.
+
+(a) "CONTENT" means all content or information, in any medium, provided by a party to the other party for use in conjunction with the performance of its obligations hereunder, including without limitation any text, music, sound, photographs, video, graphics, data or software. Content provided by 2TheMart is referred to herein as "2TheMart Content" and Content provided by i-Escrow is referred to herein as "i-Escrow Content."
+
+(b) "CO-BRANDED SITE" means the web-site accessible through Domain Name, for the Services implemented by i-Escrow. The homepage of this web-site will visibly display both 2TheMart Marks and i-Escrow Marks.
+
+(c) "CUSTOMERS" means all users who access Co-Branded Site.
+
+(d) "DOMAIN NAME" means www.iescrow.com/2TheMart.
+
+(e) "ESCROW SERVICES" means services for auction sellers and high bidders whereby an agent holds a buyer's money in trust until the buyer approves the applicable item that was physically delivered, at which time the agent releases the buyer's money to seller, after subtracting the escrow fees.
+
+(f) "INFORMATION TRANSFER MECHANISM" means the mechanism by which 2TheMart transfers to i-Escrow information to populate the applicable i-Escrow transaction and user registration forms.
+
+(g) "LAUNCH DATE" means the first date on which the Co-Branded Site is pointed to in all references to i-Escrow from 2TheMart auction site, and the Information Transfer Mechanism is publicly deployed (post-beta).
+
+(h) "MARKS" means all domain names, trademarks and logos designated by a party for the other party's use in conjunction with such other party's performance under this Agreement.  Marks designated by 2TheMart for i-Escrow's use are referred to herein as "2TheMart Marks" and Marks designated by i-Escrow for 2TheMart' use are referred to herein as "i-Escrow Marks."
+
+(i) "SERVICES" means i-Escrow's implementation and performance of the Escrow Services as of the Effective Date, as modified over time.
+
+(j) "SHADOW SITE" means the site where Co-Branded Site is made available for 2TheMart's testing of the Information Transfer Mechanism prior to being made publicly available.
+
+(k) "TRANSACTION" means a transaction utilizing the Services that actually closes and that was initiated by a Transaction Inquiry from a Customer.
+
+(l) "TRANSACTION INQUIRY" means a Customer's submission of i-Escrow's standard New Transaction Inquiry form (or its successor) on or through the Co-Branded Pages.  Currently this means entry of a description and price of merchandise by a user (buyer or seller) who agrees to abide by the terms and conditions of the Services, together with email address of the other party, regardless of whether or not any Transaction is completed.
+
+Source: 2THEMART COM INC, 10-12G, 8/26/1999
+
