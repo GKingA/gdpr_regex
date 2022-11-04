@@ -1,29 +1,48 @@
 # gdpr_regex
 
-The dataset has been tested on the [CUAD dataset](https://www.atticusprojectai.org/cuad).
+Tool to detect potentially sensitive data in text using regular expressions.
 
-It is known, that the name category has a lot of false positives.
+- Tested on the [CUAD dataset](https://www.atticusprojectai.org/cuad) of English contracts.
 
-## Usage
+- Aimed at high recall, at the cost of many false positives
 
-You can use the system on text files:
 
-```
-python main.py --file TEXT_FILE [TEXT_FILE ...]
-```
+## Requirements
 
-Paths containing text files:
+Python 3.8+
 
-```
-python main.py --path PATH_TO_DIRECTORY_WITH_TEXT_FILES [PATH_TO_DIRECTORY_WITH_TEXT_FILES ...]
-```
 
-Or simple strings in the command line:
+## Sample usage
+
+Process single file, print all matches:
 
 ```
-python main.py --string STRING_IN_QUESTION
+python main.py --file sample_data_small.txt
 ```
 
-The output will contain warnings if the texts contain any sensitive data. For example:
+Run in quiet mode on larger text, print summary stats only:
 
-"UserWarning: There might be sensitive information in the text! "The Night" could be a(n) named entity!"
+```
+python main.py --file sample_data_large.txt -q
+```
+
+```
+done, processed 330.3KiB text in 0:00:00.398533, found 4110 matches
+most common categories: [('named entity', 2294), ('date', 1708), ('computer address/url', 46), ('other', 33), ('phone number', 29)]
+```
+
+Running on the full CUAD dataset:
+
+```
+python main.py --path ~/projects/cdl/data/CUAD_v1/full_contract_txt/ -q
+```
+
+```
+processed 36.5MiB text in 0:00:33.258414, found 328556 matches
+```
+
+Note that speed could be increased considerably by optimizing regular expressions.
+
+
+
+
